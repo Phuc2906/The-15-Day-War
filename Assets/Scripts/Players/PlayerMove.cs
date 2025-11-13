@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     private SpriteRenderer spriteRenderer;
-    private Animator anim;  // Thêm Animator
+    private Animator anim;  
 
     void Start()
     {
@@ -32,7 +32,6 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        // ✅ Load Save nếu có
         if (PlayerPrefs.HasKey("PlayerX"))
         {
             transform.position = new Vector2(

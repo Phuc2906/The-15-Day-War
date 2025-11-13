@@ -9,7 +9,7 @@ public class Reward : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            ScoreManager.instance.AddScore(rewardValue);
+            ScoreManager.instance.AddCoin(rewardValue);
             Destroy(gameObject);
         }
     }

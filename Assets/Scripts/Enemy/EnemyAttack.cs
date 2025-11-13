@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [Header("Tấn công")]
-    public int damage = 5;             // Sát thương mỗi lần chạm
-    public float attackCooldown = 0.5f; // Khoảng thời gian giữa 2 đòn
+    public int damage = 5;             
+    public float attackCooldown = 0.5f; 
 
     private float lastHitTime;
 

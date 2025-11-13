@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class WeaponPickup : MonoBehaviour
 {
-    public Sprite weaponIcon;          // icon hiện ở hotbar
-    public GameObject weaponPrefab;    // prefab súng để cầm
+    public Sprite weaponIcon;          
+    public GameObject weaponPrefab;   
 
     private void Reset()
     {
@@ -17,7 +17,6 @@ public class WeaponPickup : MonoBehaviour
         var refHotbar = other.GetComponent<PlayerHotbarRef>();
         if (refHotbar != null && refHotbar.hotbar != null)
         {
-            // ✅ truyền đủ 2 tham số: icon + prefab
             if (refHotbar.hotbar.AddWeapon(weaponIcon, weaponPrefab))
             {
                 Destroy(gameObject);

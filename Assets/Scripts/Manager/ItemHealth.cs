@@ -8,10 +8,10 @@ public class HealthItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerHealth health = other.GetComponent<PlayerHealth>(); // Thay Health bằng PlayerHealth
+            PlayerHealth health = other.GetComponent<PlayerHealth>();
             if (health != null)
             {
-                health.Heal((int)healAmount); // Chuyển float sang int vì Heal nhận int
+                health.Heal((int)healAmount); 
                 Debug.Log("Đã hồi máu cho Player!");
                 Destroy(gameObject);
             }

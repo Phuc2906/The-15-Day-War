@@ -15,9 +15,9 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
     if (PlayerPrefs.HasKey("PlayerHealth"))
-        currentHealth = PlayerPrefs.GetInt("PlayerHealth");  // Load nếu có save
+        currentHealth = PlayerPrefs.GetInt("PlayerHealth");  
     else
-        currentHealth = maxHealth;  // Nếu không có thì full máu
+        currentHealth = maxHealth;  
 
     if (healthBar != null)
     {

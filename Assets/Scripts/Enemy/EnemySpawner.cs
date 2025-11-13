@@ -10,9 +10,6 @@ public class EnemySpawner : MonoBehaviour
     public int maxEnemiesAlive = 10;
     public int totalSpawnLimit = 100;
     public EnemyCountDisplay enemyCountDisplay;
-    public GameObject gameWinCanvas;
-    public GameObject bullet;
-
 
     private int currentAliveCount = 0;
     private int totalSpawned = 0;
@@ -69,25 +66,15 @@ public class EnemySpawner : MonoBehaviour
         if (enemyCountDisplay != null)
             enemyCountDisplay.UpdateCount(totalKilled, totalSpawnLimit);
 
-        // ✅ Điều kiện Win chuẩn hơn: giết đủ + không còn con nào tồn tại trên map
         if (totalKilled >= totalSpawnLimit && currentAliveCount == 0)
         {
             StopAllCoroutines();
 
-            // ✅ Xóa sạch enemy còn lại (kể cả con đang hiện dưới chữ Win)
             foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-            {
                 Destroy(enemy);
-            }
 
             foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("Bullet"))
-{
-    Destroy(bullet);
-}
-
-
-            if (gameWinCanvas != null)
-                gameWinCanvas.SetActive(true);
+                Destroy(bullet);
         }
     }
 }

@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
     {
     Time.timeScale = 0f;
 
-        // ✅ Xóa sạch enemy trên map khi chết
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             Destroy(enemy);

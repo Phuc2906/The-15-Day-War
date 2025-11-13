@@ -4,13 +4,12 @@ public class EnemyMove : MonoBehaviour
 {
     public Transform player;
     public float speed = 2f;
-    private SpriteRenderer sr; // để flip sprite
+    private SpriteRenderer sr; 
 
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
 
-        // ✅ Nếu chưa gán Player thì tự tìm theo Tag
         if (player == null)
         {
             GameObject p = GameObject.FindGameObjectWithTag("Player");

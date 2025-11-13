@@ -4,16 +4,19 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Enemy
   - Bullet
+  - UI
+  - Enemy
+  - Wall
+  - Bullet_Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemy
+  - Player
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -43,7 +46,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: GameOver
+  - name: Pause
     uniqueID: 629474267
     locked: 0
   - name: Enemy
