@@ -128,7 +128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 2
+  moveSpeed: 2.5
+  repathRate: 5
+  directMoveSpeed: 2
 --- !u!114 &8046479592051384792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   attackCooldown: 0.5
+  isAttacking: 0
 --- !u!58 &1234593637510592900
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -173,7 +176,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

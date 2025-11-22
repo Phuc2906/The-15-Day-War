@@ -2,32 +2,61 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [Header("Tấn công")]
-    public int damage = 5;             
-    public float attackCooldown = 0.5f; 
+    public int damage = 5;
+    public float attackCooldown = 0.5f;
+
+    [HideInInspector] public bool isAttacking = false;
 
     private float lastHitTime;
+    private EnemyMove moveScript;
+    private Rigidbody2D rb;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        if (!other.CompareTag("Player")) return;
-
-        var hp = other.GetComponent<PlayerHealth>();
-        if (hp == null) return;
-
-        hp.TakeDamage(damage);
-        lastHitTime = Time.time;
+        moveScript = GetComponent<EnemyMove>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!collision.collider.CompareTag("Player")) return;
+
+        isAttacking = true;
+
+        if (moveScript != null) moveScript.enabled = false;
+        if (rb != null) rb.bodyType = RigidbodyType2D.Kinematic;
+
+        DealDamage(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!collision.collider.CompareTag("Player")) return;
+
+        isAttacking = true;
+
         if (Time.time - lastHitTime < attackCooldown) return;
 
-        var hp = other.GetComponent<PlayerHealth>();
-        if (hp == null) return;
+        DealDamage(collision);
+    }
 
-        hp.TakeDamage(damage);
-        lastHitTime = Time.time;
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (!collision.collider.CompareTag("Player")) return;
+
+        isAttacking = false;
+
+        if (moveScript != null) moveScript.enabled = true;
+        if (rb != null) rb.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    private void DealDamage(Collision2D collision)
+    {
+        PlayerHealth hp = collision.collider.GetComponent<PlayerHealth>();
+        if (hp != null)
+        {
+            hp.TakeDamage(damage);
+            lastHitTime = Time.time;
+        }
     }
 }
