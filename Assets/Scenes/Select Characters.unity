@@ -1432,7 +1432,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6f391177e70cf46876388b5c016c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinText: {fileID: 673940931}
+  coinText_Game: {fileID: 673940931}
+  coinText_GameWin: {fileID: 0}
+  coinText_GameOver: {fileID: 0}
+  coinText_Total: {fileID: 673940931}
 --- !u!1 &673940929
 GameObject:
   m_ObjectHideFlags: 0
