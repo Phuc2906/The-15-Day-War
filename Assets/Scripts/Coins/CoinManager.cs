@@ -5,17 +5,21 @@ public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance;
 
-    [Header("UI hiển thị coin")]
-    public TextMeshProUGUI coinText;
+    [Header("UI hiển thị coin trong game")]
+    public TextMeshProUGUI coinText_Game;      
+    public TextMeshProUGUI coinText_GameWin;   
+    public TextMeshProUGUI coinText_GameOver;  
 
-    private int totalCoin = 30; 
+    [Header("UI tổng coin (nếu có)")]
+    public TextMeshProUGUI coinText_Total;
+
+    private int coin = 0;
 
     private void Awake()
     {
-        PlayerPrefs.DeleteAll();
-
         if (Instance == null)
         {
+            PlayerPrefs.DeleteAll();
             Instance = this;
         }
         else
@@ -24,36 +28,43 @@ public class CoinManager : MonoBehaviour
             return;
         }
 
-        totalCoin = PlayerPrefs.GetInt("TotalCoin", totalCoin);
-        UpdateCoinUI();
-    }
+        coin = PlayerPrefs.GetInt("TotalCoin", 30);
 
+        UpdateAllTexts();
+    }
+    public void AddCoin(int value)
+    {
+        coin += value;
+
+        PlayerPrefs.SetInt("TotalCoin", coin);
+        PlayerPrefs.Save();
+
+        UpdateAllTexts();
+    }
     public bool SpendCoin(int cost)
     {
-        if (totalCoin >= cost)
+        if (coin >= cost)
         {
-            totalCoin -= cost;
-            UpdateCoinUI();
-            PlayerPrefs.SetInt("TotalCoin", totalCoin);
+            coin -= cost;
+
+            PlayerPrefs.SetInt("TotalCoin", coin);
             PlayerPrefs.Save();
+
+            UpdateAllTexts();
             return true;
         }
         return false;
     }
 
-    public void AddCoin(int value)
+    private void UpdateAllTexts()
     {
-        totalCoin += value;
-        UpdateCoinUI();
-        PlayerPrefs.SetInt("TotalCoin", totalCoin);
-        PlayerPrefs.Save();
+        string s = coin.ToString();
+
+        if (coinText_Game != null) coinText_Game.text = s;
+        if (coinText_GameWin != null) coinText_GameWin.text = s;
+        if (coinText_GameOver != null) coinText_GameOver.text = s;
+        if (coinText_Total != null) coinText_Total.text = s;
     }
 
-    private void UpdateCoinUI()
-    {
-        if (coinText != null)
-            coinText.text = totalCoin.ToString();
-    }
-
-    public int GetCoin() => totalCoin;
+    public int GetCoin() => coin;
 }

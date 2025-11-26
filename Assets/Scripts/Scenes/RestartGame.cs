@@ -5,11 +5,7 @@ public class RestartGame : MonoBehaviour
 {
     public void RestartCurrentScene()
     {
-        PlayerPrefs.DeleteKey("PlayerHealth");
-        PlayerPrefs.DeleteKey("PlayerX");
-        PlayerPrefs.DeleteKey("PlayerY");
-        PlayerPrefs.DeleteKey("SavedScene");
-        PlayerPrefs.Save(); 
+        PlayerPrefs.DeleteAll();
 
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);

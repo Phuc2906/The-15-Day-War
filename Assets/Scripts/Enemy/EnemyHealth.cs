@@ -57,5 +57,7 @@ public class EnemyHealth : MonoBehaviour
     {
         Destroy(bullet);
     }
+
+    Destroy(gameObject, 1f);
 }
 }

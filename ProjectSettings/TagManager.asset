@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Bullet_Enemy
   - Obstacle
+  - Teammate
   layers:
   - Default
   - TransparentFX
