@@ -2,47 +2,44 @@ using UnityEngine;
 
 public class TeammateMove : MonoBehaviour
 {
-    public Transform player;
-    public float moveSpeed = 2f;
-    public float stopDistance = 0.05f;
+    [Header("Settings")]
+    public Transform player;      
+    public float speed = 2f;       
 
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
+    private EnemyAttack attack;    
+    private SpriteRenderer sr;     
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        attack = GetComponent<EnemyAttack>();
         sr = GetComponent<SpriteRenderer>();
 
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        rb.freezeRotation = true;
-
-        if (player == null)
+        if (!player)
         {
             GameObject p = GameObject.FindGameObjectWithTag("Player");
-            if (p != null) player = p.transform;
+            if (p != null)
+                player = p.transform;
         }
     }
 
     void Update()
     {
-        if (player == null) return;
+        if ((attack != null && attack.isAttacking) || player == null)
+            return;
 
-        Vector2 direction = (player.position - transform.position).normalized;
+        MoveTowardsPlayer();
+    }
 
-        float distance = Vector2.Distance(transform.position, player.position);
+    void MoveTowardsPlayer()
+    {
+        Vector2 currentPos = transform.position;
+        Vector2 direction = ((Vector2)player.position - currentPos).normalized;
 
-        if (distance > stopDistance)
-        {
-            rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
-
-            if (sr != null)
-                sr.flipX = direction.x < 0;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
+        transform.position = currentPos + direction * speed * Time.deltaTime;
+        
+        if (direction.x > 0.05f)
+            sr.flipX = false;
+        else if (direction.x < -0.05f)
+            sr.flipX = true;
     }
 }
-

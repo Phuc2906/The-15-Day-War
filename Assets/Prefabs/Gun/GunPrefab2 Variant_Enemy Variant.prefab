@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunPrefab2 Variant_Enemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3188670749488429857, guid: bf48c3c269cb0984f867ab10d373edb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5707334009794894963, guid: bf48c3c269cb0984f867ab10d373edb4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.867

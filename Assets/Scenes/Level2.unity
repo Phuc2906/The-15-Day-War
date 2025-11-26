@@ -125131,17 +125131,9 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1307878106}
-    - target: {fileID: 3822948995463237162, guid: 121433e54d4cdca4197bde76109f7530, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 5589636598047929789, guid: 121433e54d4cdca4197bde76109f7530, type: 3}
       propertyPath: m_Name
       value: Enemy_02
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589636598047929789, guid: 121433e54d4cdca4197bde76109f7530, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
