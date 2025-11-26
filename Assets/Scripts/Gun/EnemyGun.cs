@@ -71,7 +71,7 @@ public class EnemyGun : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
-            rb.velocity = firePoint.right * bulletSpeed;
+            rb.linearVelocity = firePoint.right * bulletSpeed;
     }
 
     void OnDrawGizmosSelected()
