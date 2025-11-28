@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "The-15-Day-War.sln"
+    "dotnet.defaultSolution": "15 Day War.sln"
 }
