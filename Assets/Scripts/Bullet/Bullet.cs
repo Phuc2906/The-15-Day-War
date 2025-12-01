@@ -5,6 +5,9 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     public float lifeTime = 2f;
 
+    public GameObject buffCanvas;   // Thêm canvas buff damage
+    public int normalDamage = 1;    // Damage mặc định
+
     private Vector2 direction;
 
     public void SetDirection(Vector2 dir)
@@ -23,16 +26,32 @@ public class Bullet : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collision)
+{
+    if (collision.CompareTag("Enemy"))
     {
-        if (collision.CompareTag("Enemy"))
+        // Check enemy thường
+        EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+        if (enemy != null)
         {
-            EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(1);
-            }
-
+            int finalDamage = normalDamage;
+            if (buffCanvas != null && buffCanvas.activeSelf)
+                finalDamage *= 2;
+            enemy.TakeDamage(finalDamage);
             Destroy(gameObject);
+            return;  // ← Quan trọng, tránh check tiếp
+        }
+
+        // Check boss
+        Health_Exp_Enemy_Boss boss = collision.GetComponent<Health_Exp_Enemy_Boss>();
+        if (boss != null)
+        {
+            int finalDamage = normalDamage;
+            if (buffCanvas != null && buffCanvas.activeSelf)
+                finalDamage *= 2;
+            boss.TakeDamage(finalDamage);
+            Destroy(gameObject);
+            return;
         }
     }
+}
 }

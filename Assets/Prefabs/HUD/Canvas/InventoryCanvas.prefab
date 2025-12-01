@@ -679,7 +679,7 @@ MonoBehaviour:
   weapons:
   - icon: {fileID: -205726582, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
     prefab: {fileID: 8099241221581135724, guid: 3620169bd33198e43a6b04635e6e716a, type: 3}
-  - icon: {fileID: 0}
+  - icon: {fileID: 563336626, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
     prefab: {fileID: 0}
   - icon: {fileID: 0}
     prefab: {fileID: 0}

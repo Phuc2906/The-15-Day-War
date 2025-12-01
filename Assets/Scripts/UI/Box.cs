@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider2D))]
-public class ChestBehavior : MonoBehaviour
+public class Box : MonoBehaviour
 {
     public string playerTag = "Player";   
     public float delayBeforeDestroy = 0.3f; 

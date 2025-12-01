@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 398928885004044534}
   - component: {fileID: 1678504654895046120}
   - component: {fileID: 7142853221298552579}
-  - component: {fileID: 4916816829818256169}
+  - component: {fileID: 3237791239437152194}
   m_Layer: 0
   m_Name: Paper_01
   m_TagString: Untagged
@@ -163,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5546551823343924173}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.813503, y: 10.816542, z: 0.73225206}
   m_LocalScale: {x: 0.99293, y: 0.99293, z: 0.99293}
   m_ConstrainProportionsScale: 0
@@ -272,7 +272,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.64, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &4916816829818256169
+--- !u!114 &3237791239437152194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

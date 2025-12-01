@@ -4,33 +4,78 @@ using TMPro;
 
 public class PlayerExpManager : MonoBehaviour
 {
-    public Slider expBar;           
-    public TMP_Text levelText;         
+    public Slider expBar;
+    public TMP_Text levelText;
 
     private int level = 1;
     private int currentExp = 0;
     private int expToNextLevel = 100;
 
+    public static PlayerExpManager Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
-        expBar.maxValue = expToNextLevel;
-        expBar.value = currentExp;
+        LoadLevel();
+        UpdateExpBar();  
         levelText.text = "Level " + level;
+    }
+
+    private int CalculateExpToNextLevel()
+    {
+        return 100 * level;  
     }
 
     public void GainExp(int amount)
     {
         currentExp += amount;
+        expToNextLevel = CalculateExpToNextLevel();
 
-        // Nếu đạt hoặc vượt exp cần thiết
-        if (currentExp >= expToNextLevel)
+        while (currentExp >= expToNextLevel)
         {
             currentExp -= expToNextLevel;
             level++;
-            levelText.text = "Level " + level;
+            expToNextLevel = CalculateExpToNextLevel();  
         }
 
-        // ✅ Cập nhật thanh kinh nghiệm
+        UpdateExpBar();
+        levelText.text = "Level " + level;
+        SaveLevel();
+    }
+
+    private void UpdateExpBar()
+    {
+        expBar.maxValue = expToNextLevel;
         expBar.value = currentExp;
+    }
+
+    void SaveLevel()
+    {
+        PlayerPrefs.SetInt("SavedLevel", level);
+        PlayerPrefs.SetInt("SavedExp", currentExp);
+        PlayerPrefs.Save();
+    }
+
+    void LoadLevel()
+    {
+        level = PlayerPrefs.GetInt("SavedLevel", 1);
+        currentExp = PlayerPrefs.GetInt("SavedExp", 0);
+        expToNextLevel = CalculateExpToNextLevel();  
+    }
+
+    public int GetLevel()
+    {
+        return level;
     }
 }

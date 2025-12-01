@@ -24,40 +24,44 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    void Die()
+   void Die()
 {
     isDead = true;
     anim.SetTrigger("Dead");
 
-    FindObjectOfType<PlayerExpManager>().GainExp(5);
+    FindObjectOfType<PlayerExpManager>().GainExp(5); 
 
     if (spawner != null)
         spawner.OnEnemyKilled();
 
     Collider2D col = GetComponent<Collider2D>();
-    if (col) col.enabled = false;
+    if (col != null) col.enabled = false;
 
     Rigidbody2D rb = GetComponent<Rigidbody2D>();
     if (rb != null)
     {
-        rb.linearVelocity = Vector2.zero;
         rb.isKinematic = true;
-    }
-    MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
-    foreach (var s in scripts)
+
+    // Tắt hết script khác trừ script này
+    foreach (var script in GetComponents<MonoBehaviour>())
     {
-        if (s != this) s.enabled = false;
+        if (script != this)
+            script.enabled = false;
     }
+
+    // Destroy súng con (nếu có)
     EnemyGun gun = GetComponentInChildren<EnemyGun>();
-        if (gun != null)
-            Destroy(gun.gameObject);
-        
-    GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet_Enemy");
-    foreach (var bullet in bullets)
+    if (gun != null)
+        Destroy(gun.gameObject);
+
+    // Xóa hết đạn địch trên màn hình
+    foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("Bullet_Enemy"))
     {
         Destroy(bullet);
     }
 
+    // QUAN TRỌNG: ĐM CÓ DẤU NGOẶC ĐÓNG ĐÂY NÈ!
     Destroy(gameObject, 1f);
+}
 }
 }

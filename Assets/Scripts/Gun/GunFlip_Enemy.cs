@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyGunFlip : MonoBehaviour
+public class GunFlip_Enemy : MonoBehaviour
 {
     public Transform enemy;  
 

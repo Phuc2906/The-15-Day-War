@@ -6,14 +6,13 @@ public class GunFlip : MonoBehaviour
 
     void Update()
     {
+        if (player == null || this == null || transform == null) 
+            return;
+
         if (player.localScale.x < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);  
-        }
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         else
-        {
-            transform.localScale = new Vector3(1, 1, 1);  
-        }
+            transform.localScale = new Vector3(1f, 1f, 1f);
 
         transform.rotation = Quaternion.identity;
     }
